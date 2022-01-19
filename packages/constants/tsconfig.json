@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "baseUrl": "./",
+    "esModuleInterop": true,
+    "paths": {
+      "@src/*": ["./src/"]
+    },
+    "allowJs": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true
+  },
+  "include": ["src"],
+  "exclude": ["dist", "coverage"]
+}

@@ -1,0 +1,4 @@
+{
+  "extends": "./base",
+  "exclude": ["**/*.test.ts", "**/*.mock.ts"]
+}

@@ -1,0 +1,85 @@
+{
+  "name": "acme-erp-shared",
+  "version": "1.0.0",
+  "description": "An Enterprise Relationship application server - microservices managed as a monorepo",
+  "author": "Odinaka Joy",
+  "license": "ISC",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "prepare": "husky install",
+    "develop": "turbo run develop",
+    "format": "prettier --write .",
+    "check-format": "prettier --check .",
+    "lint": "turbo run lint",
+    "lint-fix": "turbo run lint-fix",
+    "check-types": "turbo run check-types",
+    "test": "turbo run test",
+    "test-coverage": "turbo run test-coverage",
+    "build": "turbo run build"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/react-hooks": "^7.0.2",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.4.0",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0",
+    "esbuild": "^0.14.10",
+    "esbuild-jest": "^0.5.0",
+    "husky": "^7.0.4",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^27.4.7",
+    "jest-watch-typeahead": "^1.0.0",
+    "lint-staged": "^11.2.6",
+    "msw": "^0.36.3",
+    "prettier": "^2.5.1",
+    "turbo": "*"
+  },
+  "turbo": {
+    "pipeline": {
+      "build": {
+        "dependsOn": [
+          "^build"
+        ],
+        "outputs": [
+          "dist/**"
+        ]
+      },
+      "test": {
+        "dependsOn": [
+          "^build"
+        ],
+        "outputs": [
+          "coverage/**"
+        ]
+      },
+      "lint": {
+        "outputs": []
+      },
+      "dev": {
+        "cache": false
+      }
+    }
+  },
+  "lint-staged": {
+    "apps/**/*.{js,ts,jsx,tsx}": [
+      "eslint --fix"
+    ],
+    "packages/ui/**/*.{js,ts,jsx,tsx}": [
+      "eslint --fix"
+    ],
+    "*.json": [
+      "prettier --write"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
